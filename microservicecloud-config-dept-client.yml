@@ -21,17 +21,52 @@ spring:
       max-total: 5
       max-wait-millis: 200
 mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml  # mybatisÅäÖÃÎÄ¼şËùÔÚÂ·¾¶
-  type-aliases-package: com.study.springcloud.entity  # ËùÓĞentity±ğÃûÀàËùÔÚ°ü
+  config-location: classpath:mybatis/mybatis.cfg.xml  # mybatisé…ç½®æ–‡ä»¶æ‰€åœ¨è·¯å¾„
+  type-aliases-package: com.study.springcloud.entity  # æ‰€æœ‰entityåˆ«åç±»æ‰€åœ¨åŒ…
   mapper-locations:
   - classpath:mybatis/mapper/**/*.xml     
 eureka:
-  client: #½«¿Í»§¶Ë×¢²á½øeureka·şÎñÁĞ±íÄÚ
+  client: #å°†å®¢æˆ·ç«¯æ³¨å†Œè¿›eurekaæœåŠ¡åˆ—è¡¨å†…
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/
-  instance: #Ö÷»úÃû³Æ£º·şÎñÃû³ÆµÄĞŞ¸Ä
-    instance-id: dept-8001.com #×Ô¶¨Òå·şÎñÃû³Æ£¬±ğÃû£¬eureka¹ÙÍøApplicationÀ¸StatusÖĞµÄµØÖ·Ò»²¿·Ö£¨±ğÃû£©
-    prefer-ip-address: true  #·ÃÎÊÂ·¾¶¿ÉÒÔÏÔÊ¾IPµØÖ·
+  instance: #ä¸»æœºåç§°ï¼šæœåŠ¡åç§°çš„ä¿®æ”¹
+    instance-id: dept-8001.com #è‡ªå®šä¹‰æœåŠ¡åç§°ï¼Œåˆ«åï¼Œeurekaå®˜ç½‘Applicationæ Statusä¸­çš„åœ°å€ä¸€éƒ¨åˆ†ï¼ˆåˆ«åï¼‰
+    prefer-ip-address: true  #è®¿é—®è·¯å¾„å¯ä»¥æ˜¾ç¤ºIPåœ°å€
+info: 
+  app.name: microservicecloud
+  company.name: www.study.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$    
+---
+server:
+  port: 8001 
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-dept-client
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/cloudDB02
+    username: root
+    password: 123
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml  # mybatisé…ç½®æ–‡ä»¶æ‰€åœ¨è·¯å¾„
+  type-aliases-package: com.study.springcloud.entity  # æ‰€æœ‰entityåˆ«åç±»æ‰€åœ¨åŒ…
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml     
+eureka:
+  client: #å°†å®¢æˆ·ç«¯æ³¨å†Œè¿›eurekaæœåŠ¡åˆ—è¡¨å†…
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance: #ä¸»æœºåç§°ï¼šæœåŠ¡åç§°çš„ä¿®æ”¹
+    instance-id: dept-8001.com #è‡ªå®šä¹‰æœåŠ¡åç§°ï¼Œåˆ«åï¼Œeurekaå®˜ç½‘Applicationæ Statusä¸­çš„åœ°å€ä¸€éƒ¨åˆ†ï¼ˆåˆ«åï¼‰
+    prefer-ip-address: true  #è®¿é—®è·¯å¾„å¯ä»¥æ˜¾ç¤ºIPåœ°å€
 info: 
   app.name: microservicecloud
   company.name: www.study.com
